@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Result Page</title>
+  </head>
+  <body>
+    <h1>Result Page</h1>
+    {% if song.lower() == 'hey jude' or song.lower() == 'veech shelo' %}
+    <div style="text-align: center">
+      <label>{{ song }}</label><br />
+      <label>{{ author }}</label><br />
+      <form action="/selectSong" method="POST">
+        <input type="hidden" name="song" value="{{ song }}" />
+        <button type="submit">Select</button>
+      </form>
+    </div>
+    {% else %}
+    <div style="text-align: center">
+      <p>Song not found.</p>
+      <a href="{{ url_for('mainPageAdmin') }}">search for another song</a>
+    </div>
+    {% endif %}
+  </body>
+</html>

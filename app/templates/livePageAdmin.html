@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>live page admin</title>
+  </head>
+  <body>
+    <h1 id="song-title">This is the live page admin</h1>
+    <p id="song-author"></p>
+
+    <script>
+      // Function to get query parameters
+      function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+      }
+
+      // Set the song title and author
+      document.getElementById("song-title").innerText =
+        "Song: " + getQueryParam("song");
+      document.getElementById("song-author").innerText =
+        "Author: " + getQueryParam("author");
+
+      // Additional admin controls (example: end session button)
+      const endSessionButton = document.createElement("button");
+      endSessionButton.innerText = "End Session";
+      endSessionButton.onclick = function () {
+        alert("Session ended.");
+        // Emit an event or redirect to another page as needed
+      };
+      document.body.appendChild(endSessionButton);
+    </script>
+  </body>
+</html>
