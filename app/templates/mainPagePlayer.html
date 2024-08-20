@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Main Page Player</title>
+  </head>
+  <body>
+    <script>
+      const socket = io.connect();
+
+      // Join the rehearsal room
+      socket.emit("join", { room: "rehearsal_room" });
+
+      // Listen for the start_live_session event
+      socket.on("start_live_session", function (data) {
+        window.location.href = "/livePage";
+      });
+    </script>
+    <div>
+      <h1>Waiting for next song ...</h1>
+    </div>
+  </body>
+</html>

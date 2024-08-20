@@ -6,11 +6,19 @@
     <title>Login</title>
   </head>
   <body>
-    <!-- <form method="POST" action="">
-      {{ form.hidden_tag() }} {{ form.username }} {{ form.password }} {{
-      form.submit }}
+    <h1>Login</h1>
+    <form method="POST" action="{{ url_for('login') }}">
+      <p>
+        <label for="username">Username</label><br />
+        <input type="text" name="username" id="username" required />
+      </p>
+      <p>
+        <label for="password">Password</label><br />
+        <input type="password" name="password" id="password" required />
+      </p>
+      <p><input type="submit" value="Login" /></p>
     </form>
--->
+
     <a href="{{ url_for('signUp') }}">Don't have an account? Sign Up</a>
   </body>
 </html>

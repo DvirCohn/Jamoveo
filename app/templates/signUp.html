@@ -6,12 +6,24 @@
     <title>SignUp</title>
   </head>
   <body>
-    <!--
-    <form method="POST" action="">
-      {{ form.hidden_tag() }} {{ form.username }} {{ form.password }}
-      {{form.instrument}} {{ form.submit }}
+    <h1>Sign Up</h1>
+    <form method="POST" action="{{ url_for('signUp') }}">
+      <p>
+        <label for="username">Username</label><br />
+        <input type="text" name="username" id="username" required />
+      </p>
+      <p>
+        <label for="password">Password</label><br />
+        <input type="password" name="password" id="password" required />
+      </p>
+      <p>
+        <label for="instrument">instrument</label><br />
+        <input type="text" name="instrument" id="instrument" required />
+      </p>
+      <p><input type="submit" value="Sign Up" /></p>
     </form>
-    -->
+    </form>
+    
 
     <a href="{{ url_for('login') }}">Don't have an account? Sign Up</a>
   </body>
