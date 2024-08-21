@@ -3,9 +3,33 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Live page</title>
+    <title>Live page players</title>
   </head>
   <body>
-    <h1>this is the live page</h1>
+    <h1 id="song-title">This is the live page</h1>
+    <p id="song-author"></p>
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+
+    <script>
+      const socket = io.connect();
+      // Function to get query parameters
+      function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+      }
+
+      // Set the song title and author
+      document.getElementById("song-title").innerText =
+        "Song: " + getQueryParam("song");
+      document.getElementById("song-author").innerText =
+        "Author: " + getQueryParam("author");
+
+      socket.on("session_ended", function () {
+        console.log(
+          "Session ended event received. Redirecting to mainPagePlayer."
+        );
+        window.location.href = "/mainPagePlayer";
+      });
+    </script>
   </body>
 </html>

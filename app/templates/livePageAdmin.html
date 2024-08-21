@@ -1,3 +1,4 @@
+<!-- livePageAdmin.html -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -6,29 +7,44 @@
     <title>live page admin</title>
   </head>
   <body>
-    <h1 id="song-title">This is the live page admin</h1>
-    <p id="song-author"></p>
+    <h1 id="song-title">Song: {{song}}</h1>
+    <p id="song-author">Author: {{author}}</p>
+
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
 
     <script>
-      // Function to get query parameters
-      function getQueryParam(param) {
-        const urlParams = new URLSearchParams(window.location.search);
-        return urlParams.get(param);
-      }
+      const socket = io.connect();
+
+      /* Function to get query parameters
+      //function getQueryParam(param) {
+      //  const urlParams = new URLSearchParams(window.location.search);
+      //  return urlParams.get(param);
+      /}*/
+
+      // Log the song and author
+      console.log("Song Title:", "{{ song }}");
+      console.log("Song Author:", "{{ author }}");
+
+      //const songTitle = getQueryParam("song");
+      //const songAuthor = getQueryParam("author");
+
+      //console.log("Song Title:", songTitle);
+      //console.log("Song Author:", songAuthor);
 
       // Set the song title and author
-      document.getElementById("song-title").innerText =
-        "Song: " + getQueryParam("song");
-      document.getElementById("song-author").innerText =
-        "Author: " + getQueryParam("author");
+      //document.getElementById("song-title").innerText = "Song: " + songTitle;
+      //document.getElementById("song-author").innerText =
+      //"Author: " + songAuthor;
 
-      // Additional admin controls (example: end session button)
+      // Handle "End Session" button click
+      function endSession() {
+        socket.emit("end_session"); // Notify players that the session has ended
+        window.location.href = "/mainPageAdmin"; // Redirect admin to main page
+      }
+
       const endSessionButton = document.createElement("button");
       endSessionButton.innerText = "End Session";
-      endSessionButton.onclick = function () {
-        alert("Session ended.");
-        // Emit an event or redirect to another page as needed
-      };
+      endSessionButton.onclick = endSession;
       document.body.appendChild(endSessionButton);
     </script>
   </body>
